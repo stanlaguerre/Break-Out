@@ -15,7 +15,7 @@ This is a homework assignment from a class I took at Macalester College. I was g
 - Making the ball be able to interact with the bricks.
 - Implementing the trajectory of the ball when it bounces off of an object.
 
-### Extensions
+### Possible Extensions
 - Make a menu screen
 - screens for when the player loses or wins.
 - Create a graphic to indicate how many lives the player has.
