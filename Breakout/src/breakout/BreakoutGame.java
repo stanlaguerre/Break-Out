@@ -13,7 +13,7 @@ public class BreakoutGame {
     private CanvasWindow canvas;
     private Paddle paddle;
     private Ball ball;
-    private int life = 30;
+    private int life = 5;
     private static int bricksLeft = 100;
 
     /**
