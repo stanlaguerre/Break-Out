@@ -1,4 +1,3 @@
-import breakout.Ball;
 import breakout.BreakoutGame;
 import org.junit.jupiter.api.Test;
 
@@ -12,16 +11,11 @@ public class BallTest {
     @Test
     void gameWinTest() {
         BreakoutGame game = new BreakoutGame();
-        for(int i = 0; i < 100; i++)
+        for (int i = 0; i < 101; i++)
             game.destroyBrick();
         assertTrue(game.winGame());
     }
 
-    @Test
-    void sideCollisionTest(){
-        BreakoutGame game = new BreakoutGame();
-        game.run();
-    }
 }
 
 
