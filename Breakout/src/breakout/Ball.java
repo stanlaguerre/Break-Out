@@ -46,13 +46,13 @@ public class Ball {
      * @return true if the ball hits either side of the canvas window.
      */
     public boolean sideCollision() {
-    double leftX = centerX - RADIUS;
-    double rightX = centerX + RADIUS;
-        if (leftX<=0 || rightX>=600) {
-            velocityX=-velocityX;
-            return true;
-        }
-    return false;
+        double leftX = centerX - RADIUS;
+        double rightX = centerX + RADIUS;
+            if (leftX<=0 || rightX>=600) {
+                velocityX=-velocityX;
+                return true;
+            }
+        return false;
     }
 
     /**
@@ -60,12 +60,12 @@ public class Ball {
      * @return true if the ball hits the top of the canvas window.
      */
     public boolean topCollision() {
-    double topY = centerY - RADIUS;
-        if (topY<=0) {
-            velocityY=-velocityY;
-            return true;
-        }     
-    return false;
+        double topY = centerY - RADIUS;
+            if (topY<=0) {
+                velocityY=-velocityY;
+                return true;
+            }
+        return false;
     }
 
     /**
@@ -91,11 +91,13 @@ public class Ball {
      * Changes the ball's velocity in the y direction if the ball hits paddle.
      * @return true if the ball hits paddle.
      */
-    public void hitPaddle(CanvasWindow canvas, Paddle paddle){
+    public boolean hitPaddle(CanvasWindow canvas, Paddle paddle){
         double bottomY = centerY + RADIUS;
         if (paddle.equals(canvas.getElementAt(ball.getCenter().getX(),bottomY + 0.01))) {
             velocityY=-velocityY;
+            return true;
         }
+        return false;
     }
 
     /**
