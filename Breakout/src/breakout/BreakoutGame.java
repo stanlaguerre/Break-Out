@@ -1,5 +1,4 @@
 package breakout;
-
 import edu.macalester.graphics.CanvasWindow;
 
 /**
@@ -8,11 +7,11 @@ import edu.macalester.graphics.CanvasWindow;
 public class BreakoutGame {
     private static final int CANVAS_WIDTH = 600;
     private static final int CANVAS_HEIGHT = 800;
-    private BrickManager grid;
-    private BrickManager brickManager;
+    private breakout.BrickManager grid;
+    private breakout.BrickManager brickManager;
     private CanvasWindow canvas;
-    private Paddle paddle;
-    private Ball ball;
+    private breakout.Paddle paddle;
+    private breakout.Ball ball;
     private int life = 3;
     private static int bricksLeft = 100;
 
@@ -23,7 +22,7 @@ public class BreakoutGame {
      */
     public BreakoutGame() {
         canvas = new CanvasWindow("Breakout!", CANVAS_WIDTH, CANVAS_HEIGHT);
-        brickManager = new BrickManager(canvas);
+        brickManager = new breakout.BrickManager(canvas);
         canvas.onMouseMove(event -> paddle.setX(event.getPosition().getX()));
         canvas.animate(event -> {
             ball.hitPaddle(canvas, paddle);
@@ -44,7 +43,7 @@ public class BreakoutGame {
      * Constructs a 10 by 10 grid of bricks.
      */
     public void createGrid() {
-        grid = new BrickManager(canvas);
+        grid = new breakout.BrickManager(canvas);
         grid.generateBrickGrid();
     }
 
@@ -52,7 +51,7 @@ public class BreakoutGame {
      * Constructs a paddle at (200,500).
      */
     public void createPaddle() {
-        paddle = new Paddle(200, 500);
+        paddle = new breakout.Paddle(200, 500);
         canvas.add(paddle);
     }
 
@@ -60,7 +59,7 @@ public class BreakoutGame {
      * Constructs a ball at (250, 300).
      */
     public void createBall() {
-        ball = new Ball(300, 10, 250, 300, canvas);
+        ball = new breakout.Ball(300, 10, 250, 300, canvas);
     }
 
     /**
