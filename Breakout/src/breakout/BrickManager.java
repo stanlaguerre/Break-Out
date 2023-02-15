@@ -20,7 +20,7 @@ public class BrickManager {
     public void generateBrickRow(Color color, double initialY) {
         double initialX = 11;
         for (int n = 0; n < 2; n++) {
-            for (int i = 0; i < 11; i++) {
+            for (int i = 0; i < 10; i++) {
                 Brick brick = new Brick(initialX, initialY, color);
                 canvas.add(brick);
                 initialX += 59;

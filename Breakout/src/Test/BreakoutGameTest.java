@@ -9,10 +9,10 @@ class BreakoutGameTest {
 
     @Test
     void loseGame() {
-//        BreakoutGame game = new BreakoutGame();
-//        life -= 2;
-//        assertFalse(game.loseGame());
-//        life -= 1;
-//        assertTrue(game.loseGame());
+        BreakoutGame game = new BreakoutGame();
+        game.life -= 2;
+        assertFalse(game.loseGame());
+        game.life -= 1;
+        assertTrue(game.loseGame());
     }
 }

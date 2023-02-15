@@ -1,5 +1,10 @@
 package breakout;
+
+
+import breakout.Screen;
 import edu.macalester.graphics.CanvasWindow;
+
+import java.awt.*;
 
 /**
  * The game of Breakout.
@@ -12,8 +17,13 @@ public class BreakoutGame {
     private CanvasWindow canvas;
     private breakout.Paddle paddle;
     private breakout.Ball ball;
+    private breakout.Screen loseScreen;
+    private breakout.Screen winScreen;
     private int life = 3;
-    private static int bricksLeft = 100;
+    private static int bricksLeft = 2;
+
+    private int loseTracker = 0;
+    private  int winTracker = 0;
 
     /**
      * Lets the user move the paddle with a mouse. Also makes the ball move, checks
@@ -31,10 +41,6 @@ public class BreakoutGame {
 
             if (ball.topCollision() || ball.sideCollision()) {
                 ball.move(1);
-            }
-
-            if (loseGame() || winGame()) {
-                canvas.closeWindow();
             }
         });
     }
@@ -69,6 +75,16 @@ public class BreakoutGame {
         createPaddle();
         createGrid();
         createBall();
+        canvas.animate(() -> {
+            if(life > 0 && loseTracker == 0) {
+                loseLife();
+            }
+                loseGame();
+            if(bricksLeft <= 0 && winTracker == 0){
+                winGame();
+                ball.removeFromCanvas(canvas);
+            }
+        });
     }
 
     /**
@@ -80,10 +96,12 @@ public class BreakoutGame {
      *         changed if the total number of bricks on the canvas is not 100.
      */
     public boolean winGame() {
-        if (bricksLeft <= 0) {
-            return true;
-        }
-        return false;
+        canvas.remove(paddle);
+        winScreen = new Screen("You Win!","Play Again", Color.GREEN);
+        bricksLeft = 2;
+        winTracker++;
+
+        return true;
     }
 
     /**
@@ -95,14 +113,23 @@ public class BreakoutGame {
      *         be manually
      *         changed if the user wants more or less than 3 lives.
      */
-    public boolean loseGame() {
-        if (ball.Reset()) {
+
+    public void loseLife() {
+        if (ball.Reset() && winTracker == 0) {
             ball.removeFromCanvas(canvas);
-            createBall();
+            if(life > 0) {
+                createBall();
+            }
             life -= 1;
         }
+    }
 
+    public boolean loseGame() {
         if (life < 1) {
+            canvas.removeAll();
+            loseScreen = new Screen("You Lose","Play Again",Color.RED);
+            life = 3;
+            loseTracker++;
             return true;
         }
         return false;
